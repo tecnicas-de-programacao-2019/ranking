@@ -5,8 +5,26 @@
  */
 package osGuri;
 
-public class BestScores implements IBestScores {
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 
+
+public class BestScores implements IBestScores {
+    List<Jogador> ranking = new LinkedList();
+    
+    public class Jogador{
+        String nome;
+        int score;
+        
+        public Jogador(String nome, int score){
+            this.nome=nome;
+            this.score=score;
+        }
+        
+    }
+    
+    
     @Override
     public int getMAXSCORES() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -14,17 +32,37 @@ public class BestScores implements IBestScores {
 
     @Override
     public boolean add(String umNome, int umScore) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+         Jogador jogador = new Jogador(umNome,umScore);
+         if (ranking.size() < 10){
+             int i = 0;
+             for (Jogador j : ranking){
+                 
+                 
+                 i++;
+             
+             }
+         }
+         
+         
+                 
+             
+             
+             
+         }
+         
+         
+         
+         
+    }}
 
     @Override
     public int numRecords() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return ranking.length;
     }
 
     @Override
     public int getScore(int i) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
     }
 
     @Override
