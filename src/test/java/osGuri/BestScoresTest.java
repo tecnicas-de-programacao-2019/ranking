@@ -55,7 +55,7 @@ public class BestScoresTest {
         BestScores best = fill();
         best.add("Joana", 14);
         assertEquals(14, best.worstScore());
-        assertEquals(14, best.getScore(best.numRecords()-1);
+        assertEquals(14, best.getScore(best.numRecords()-1));
     }
 
     private BestScores fill() {
