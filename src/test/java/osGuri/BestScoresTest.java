@@ -2,22 +2,73 @@ package osGuri;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.CsvSource;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
 public class BestScoresTest {
-    
-    @DisplayName("Testa adicionar jogadores no placar")
-    @ParameterizedTest
-    @CsvSource({ "Joao, 10, true", "Marcos, 7, true", "Felipe, 8, true", "Henrique, 11, true", "Carlos, 15, true",
-    "Jon, 20, true", "Luis, 13, true", "Jade, 8, true", "Marcondes, 18, true", "Moana, 46, true", "Jonatan, 3, false" })
-    public void adicionarJogadorTest(String nome, int score, boolean resultEsperado) {
+
+    @Test
+    @DisplayName("Testa se o maxscores eh 10")
+    public void maxscoresTest() {
         BestScores best = new BestScores();
-        boolean result = best.add(nome, score);
-        assertEquals(resultEsperado, result);
+        assertTrue(best.getMAXSCORES() == 10);
+    }
+
+    @Test
+    @DisplayName("Testa adicionar um jogador a um placar ja lotado com um score baixo.")
+    public void addJogadorNaoEntraNoPlacarTest() {
+        BestScores best = fill();
+        boolean result = best.add("Joana", 3);
+        assertEquals(false, result);
+    }
+
+    @Test
+    @DisplayName("Testa adicionar um jogador a um placar ja lotado com um score alto.")
+    public void addJogadorEntraNoPlacarTest() {
+        BestScores best = fill();
+        boolean result = best.add("Joana", 99);
+        assertEquals(true, result);
+    }
+
+    @Test
+    @DisplayName("Teste passa por um placar cheio e verifica se esta ordenado")
+    public void verificaOrdenacaoTest() {
+        BestScores best = fill();
+        for (int i = 1; i < best.numRecords(); i++) {
+            assertTrue(best.getScore(i-1) > best.getScore(i));
+        }
+    }
+
+    @Test
+    @DisplayName("Testa se um score grande vai para primeiro lugar")
+    public void adicionaUmJogadorComMaiorScoreTest() {
+        BestScores best = fill();
+        best.add("Joana", 9999);
+        assertEquals(9999, best.bestScore());
+        assertEquals(9999, best.getScore(0));
+    }
+
+    @Test
+    @DisplayName("Testa se um score baixo vai para ultimo lugar")
+    public void adicionaUmJogadorComPiorScoreTest() {
+        BestScores best = fill();
+        best.add("Joana", 14);
+        assertEquals(14, best.worstScore());
+        assertEquals(14, best.getScore(best.numRecords()-1);
+    }
+
+    private BestScores fill() {
+        String[] nomes = { "Joao", "Marcos", "Carla", "Henrique", "Matheus", "Ana", "Lucas", "Pedro", "Marcela",
+                "Felipe" };
+        int[] scores = { 20, 22, 27, 13, 15, 16, 19, 21, 67, 34 };
+
+        BestScores best = new BestScores();
+        for (int i = 0; i < scores.length; i++) {
+            best.add(nomes[i], scores[i]);
+        }
+
+        return best;
     }
 
 }

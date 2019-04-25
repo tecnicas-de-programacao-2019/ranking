@@ -1,0 +1,8 @@
+-------------------------------------------------------------------------------
+Test set: osGuri.BestScoresTest
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.011 s <<< FAILURE! - in osGuri.BestScoresTest
+adicionarJogadorTest  Time elapsed: 0.006 s  <<< ERROR!
+java.lang.UnsupportedOperationException: Not supported yet.
+	at osGuri.BestScoresTest.adicionarJogadorTest(BestScoresTest.java:22)
+
