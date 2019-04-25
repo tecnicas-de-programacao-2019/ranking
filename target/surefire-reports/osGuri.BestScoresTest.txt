@@ -1,8 +1,33 @@
 -------------------------------------------------------------------------------
 Test set: osGuri.BestScoresTest
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.011 s <<< FAILURE! - in osGuri.BestScoresTest
-adicionarJogadorTest  Time elapsed: 0.006 s  <<< ERROR!
+Tests run: 6, Failures: 0, Errors: 6, Skipped: 0, Time elapsed: 0.002 s <<< FAILURE! - in osGuri.BestScoresTest
+adicionaUmJogadorComMaiorScoreTest  Time elapsed: 0 s  <<< ERROR!
 java.lang.UnsupportedOperationException: Not supported yet.
-	at osGuri.BestScoresTest.adicionarJogadorTest(BestScoresTest.java:22)
+	at osGuri.BestScoresTest.fill(BestScoresTest.java:68)
+	at osGuri.BestScoresTest.adicionaUmJogadorComMaiorScoreTest(BestScoresTest.java:46)
+
+maxscoresTest  Time elapsed: 0.001 s  <<< ERROR!
+java.lang.UnsupportedOperationException: Not supported yet.
+	at osGuri.BestScoresTest.maxscoresTest(BestScoresTest.java:15)
+
+addJogadorNaoEntraNoPlacarTest  Time elapsed: 0 s  <<< ERROR!
+java.lang.UnsupportedOperationException: Not supported yet.
+	at osGuri.BestScoresTest.fill(BestScoresTest.java:68)
+	at osGuri.BestScoresTest.addJogadorNaoEntraNoPlacarTest(BestScoresTest.java:21)
+
+addJogadorEntraNoPlacarTest  Time elapsed: 0 s  <<< ERROR!
+java.lang.UnsupportedOperationException: Not supported yet.
+	at osGuri.BestScoresTest.fill(BestScoresTest.java:68)
+	at osGuri.BestScoresTest.addJogadorEntraNoPlacarTest(BestScoresTest.java:29)
+
+adicionaUmJogadorComPiorScoreTest  Time elapsed: 0 s  <<< ERROR!
+java.lang.UnsupportedOperationException: Not supported yet.
+	at osGuri.BestScoresTest.fill(BestScoresTest.java:68)
+	at osGuri.BestScoresTest.adicionaUmJogadorComPiorScoreTest(BestScoresTest.java:55)
+
+verificaOrdenacaoTest  Time elapsed: 0.001 s  <<< ERROR!
+java.lang.UnsupportedOperationException: Not supported yet.
+	at osGuri.BestScoresTest.fill(BestScoresTest.java:68)
+	at osGuri.BestScoresTest.verificaOrdenacaoTest(BestScoresTest.java:37)
 
