@@ -1,4 +1,4 @@
-
+package erick;
 
 public interface IBestScores {
     /*@ pure @*/int getMAXSCORES();
