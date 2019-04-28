@@ -5,19 +5,18 @@
  */
 
 
-
+import java.util.Collections;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Comparator;
 
-
-
-public class BestScores implements IBestScores, Comparable<Jogador> {
+public class BestScores implements IBestScores{
     public class Jogador implements Comparable<Jogador> {
 
-        String nome;
-        int score;
+        private String nome;
+        private int score;
 
         public Jogador(String nome, int score){
             this.nome = nome;
@@ -26,11 +25,11 @@ public class BestScores implements IBestScores, Comparable<Jogador> {
 
         public int compareTo(Jogador j){
             if (this.score > j.score)
-                return -1;
+                return 1;
 
             
             else
-                return 1;
+                return -1;
         }
 
         
@@ -40,7 +39,7 @@ public class BestScores implements IBestScores, Comparable<Jogador> {
 
  
 
-    public List<Jogador> ranking;
+    private List<Jogador> ranking;
 
     public BestScores(){
         ranking = new LinkedList<Jogador>();
@@ -48,22 +47,33 @@ public class BestScores implements IBestScores, Comparable<Jogador> {
     
     @Override
     public int numRecords() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        int i=0;
+        for (Jogador j : ranking){
+            i++;
+        }
+        if (i>10)
+            i=10;
+        return i;
+
     }
 
     @Override
     public int getScore(int i) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if (i<0 || i> this.numRecords() || i>10)
+            return -1;
+        return ranking.get(i).score;
     }
 
     @Override
     public int worstScore() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if (ranking.size()==0) return -1;
+        return ranking.get(this.numRecords()-1).score;
     }
 
     @Override
     public int bestScore() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       if (ranking.size()==0) return -1;
+        return ranking.get(0).score;
     }
 
     
@@ -78,7 +88,13 @@ public class BestScores implements IBestScores, Comparable<Jogador> {
     public boolean add(String umNome, int umScore) {
         Jogador jogador = new Jogador(umNome, umScore);
         ranking.add(jogador);
-        Collections.sort(ranking);         
+        Collections.sort(ranking, new Comparator<Jogador>() {
+            public int compare(Jogador s1, Jogador s2) {
+                return s1.compareTo(s2);
+            }
+        }); 
+        if (worstScore() > umScore)
+            return false;
         return true;
     }
 
@@ -89,23 +105,10 @@ public class BestScores implements IBestScores, Comparable<Jogador> {
 
     public void imprime(){
         for (Jogador j : ranking){
-            System.out.println(j.nome);
+            System.out.println("Nome: " + j.nome + "         Score: " + j.score);
 
         }
 
     }
-
-   public static void main(String[] args){
-       BestScores placar = new BestScores();
-       placar.add("Ryan", 10);
-       placar.add("Jose", 20);    
-       placar.add("Bred", 40);
-       placar.add("Silvio", 30);    
-       placar.add("Greg", 500);
-       placar.add("Will", 5);    
-       placar.imprime();
-       System.out.println(placar.ranking.size());
-
-   }
 
 }
