@@ -1,4 +1,4 @@
-
+package osGuri;
 
 public interface IBestScores {
     /*@ pure @*/int getMAXSCORES();
