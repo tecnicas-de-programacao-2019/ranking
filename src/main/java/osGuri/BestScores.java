@@ -25,11 +25,11 @@ public class BestScores implements IBestScores{
 
         public int compareTo(Jogador j){
             if (this.score > j.score)
-                return 1;
+                return -1;
 
             
             else
-                return -1;
+                return 1;
         }
 
         
@@ -108,7 +108,9 @@ public class BestScores implements IBestScores{
             System.out.println("Nome: " + j.nome + "         Score: " + j.score);
 
         }
+}
 
-    }
+ 
+    
 
 }
